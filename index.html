@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="nav" id="js-nav">
+        <div id="js-pointer" class="nav__pointer"></div>
+        <ul class="nav__list">
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Tasks</a></li>
+            <li><a href="#">Steps</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+</body>
+<script>
+    let CONTAINER_PADDING_HALF = "0.5em";
+
+    let nav = document.getElementById("js-nav");
+    let pointer = document.getElementById("js-pointer");
+    let links = nav.getElementsByTagName("a");
+
+    pointer.style.width =
+        "calc(100% /" + links.length + " - " + CONTAINER_PADDING_HALF + ")";
+
+    for (let i = 0; i < links.length; i++) {
+        let current = links[i];
+        current.dataset.order = i * 100 + "%";
+        current.addEventListener("click", movePointer);
+    }
+
+    function movePointer(e) {
+        let order = e.currentTarget.dataset.order;
+        pointer.style.transform = "translate3d(" + order + ",0,0)";
+    }
+</script>
+
+</html>
